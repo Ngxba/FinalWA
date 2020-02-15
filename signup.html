@@ -88,7 +88,7 @@
             <input type="password" id="password" placeholder="Password">
             <button id="signin" onclick="signUp()">SIGN UP</button>
             <p>Already have an account ? <a href="login.html">Sign in now !</a></p>
-            <p id="falseCASE" style="display: none"></p>
+            <p id="CASE" style="display: none"></p>
         </div>
     </div>
     <script>
@@ -98,11 +98,14 @@
             let listPassword = JSON.parse(window.localStorage.getItem('password'))
             let input_email = document.getElementById("email").value;
             let input_password = document.getElementById("password").value;
-            
+            let output_case = document.getElementById("CASE")
+
             if (listUsers != null) {
                 for (let i = 0; i < listUsers.length; i++) {
                     if (input_email == listUsers[i]) {
-                        console.log("ACCOUNT ALREADY EXITS")
+                        output_case.innerHTML = "Account already exist, choose different name"
+                        output_case.style.color = "red"
+                        output_case.style.display = "block"
                         isAccountExist = true
                     }
                 }
@@ -111,14 +114,24 @@
                     listPassword.push(input_password)
                     window.localStorage.setItem("users", JSON.stringify(listUsers));
                     window.localStorage.setItem("password", JSON.stringify(listPassword))
-                    console.log("SUCCESS")
+                    output_case.innerHTML = "Sign up Succesful"
+                    output_case.style.color = "green"
+                    output_case.style.display = "block"
+                    setTimeout(function () {
+                        window.location.href = "./login.html";
+                    }, 2000)
                 }
             } else {
                 listUsers = [input_email]
                 listPassword = [input_password]
                 window.localStorage.setItem("users", JSON.stringify(listUsers));
                 window.localStorage.setItem("password", JSON.stringify(listPassword))
-                console.log("SUCCESS by default")
+                output_case.innerHTML = "Sign up Succesful"
+                output_case.style.color = "green"
+                output_case.style.display = "block";
+                setTimeout(function () {
+                    window.location.href = "./login.html";
+                }, 2000)
             }
 
         }

@@ -173,6 +173,12 @@
         let intro_des3 = document.getElementById("intro-des3")
         let intro_des4 = document.getElementById("intro-des4")
 
+        let isLogin = JSON.parse(window.localStorage.getItem('isLogin'))
+
+        if(!isLogin){
+            window.location.href = "./login.html"
+        }
+        
         intro_block1.addEventListener("mouseover", function () {
             intro_block1.style.backgroundColor = "white";
             intro_block1.style.color = "black"

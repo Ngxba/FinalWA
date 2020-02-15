@@ -94,7 +94,7 @@
     <script>
         // let account_email = "123@123"
         // let account_password = "1234"
-        
+
         function signIn() {
             let email = document.getElementById("email").value;
             let password = document.getElementById("password").value;
@@ -118,7 +118,13 @@
             } else {
                 for (let i = 0; i <= listUsers.length; i++) {
                     if (email === listUsers[i] && password === listPassword[i]) {
-                        window.location.href = "./index.html";
+                        falseCase.innerHTML = "Login successful"
+                        falseCase.style.color = "green"
+                        falseCase.style.display = "block"
+                        setTimeout(function () {
+                            window.localStorage.setItem("isLogin", true)
+                            window.location.href = "./index.html"
+                        }, 1000)
                         isLogin = true;
                     }
                 }
